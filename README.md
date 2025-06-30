@@ -1,55 +1,111 @@
-# Smart Doorbell with Face Recognition
+# 🔔 Smart Doorbell with Face Recognition
 
-A Python-based smart doorbell system that uses AWS Rekognition to recognize faces, sends alerts via email/SMS, and logs visitors in a dashboard.
-
----
-
-## Features
-
-- ✅ Real-time face recognition using webcam
-- ✅ AWS Rekognition for known/unknown detection
-- 📧 Email alert for every visitor
-- 📱 SMS alert via Twilio
-- 💾 Logs all detections to a CSV file
-- 📊 Flask dashboard to view visitor history
-- 🧠 Easy-to-extend architecture
+A Python-powered smart doorbell system that captures live video, detects and recognizes known faces using AWS Rekognition, and sends real-time alerts via email and SMS. Includes a web dashboard to manage known visitors and log every entry with a snapshot.
 
 ---
 
-## 🛠 Tech Stack
+## ✨ Features
 
-- Python 3.10+
+- 🎥 Real-time video feed via OpenCV
+- 🧠 Face recognition with AWS Rekognition
+- 📬 Email alerts via Gmail
+- 📲 SMS alerts via Twilio
+- 🖼️ Visitor snapshot logging
+- 🌐 Web dashboard to manage users
+- 🔒 Environment-based secret handling
+
+---
+
+## 🧰 Tech Stack
+
+- Python 3.8+
 - OpenCV
-- AWS Rekognition (Boto3)
 - Flask
-- Twilio
+- AWS Rekognition
+- Twilio SMS
 - Gmail SMTP
-- Dotenv
+- dotenv
+
+---
+
+## 🗂️ Project Structure
+
+smart-doorbell/
+├── app/
+│ ├── aws_rekognition.py
+│ ├── config.py
+│ ├── notification.py
+│ ├── sms_alert.py
+│ ├── visitor_log.py
+├── logs/
+│ └── visitor_log.json
+│ └── snapshots/
+├── static/
+│ └── uploads/
+│ └── snapshots/
+├── templates/
+│ ├── index.html
+│ └── manage_users.html
+├── dashboard.py
+├── run.py
+├── .env # Not tracked — for credentials
+├── requirements.txt
+├── README.md
+
 
 ---
 
 ## 🔧 Setup Instructions
 
-1. Create Virtual Environment
-2. Install Dependencies
-3. Create .env File
+1. **Clone the repo**
 
-# Running the System
-4. python dashboard.py
+git clone https://github.com/yadavdeepesh07/smart-doorbell-face-recognition.git
+cd smart-doorbell-face-recognition
 
-Press s → simulate visitor detection
+2. Create a virtual environment
+python -m venv venv
+venv\Scripts\activate      # Windows
+source venv/bin/activate   # macOS/Linux
+3. Install dependencies
+pip install -r requirements.txt
+4. Create a .env file with your AWS Rekognition and Gmail SMTP credentials
+# AWS
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+AWS_REGION=us-east-1
 
-Press q → quit camer
+# Email
+EMAIL_ADDRESS=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password
 
-5. python 
+# Twilio
+TWILIO_ACCOUNT_SID=your_sid
+TWILIO_AUTH_TOKEN=your_token
+TWILIO_PHONE=+1234567890
+USER_PHONE=+919xxxxxxxxx
+5. Run the 
+    1. Live Face Detection & Alerts
+    python run.py
+    2. Launch Web Dashboard
+    python dashboard.py
+
+Screenshots
+
+![alt text](image.png)
 
 
+Security Notes
+✅ Never commit .env or real credentials
 
-### 1. Clone the Repo
+✅ AWS keys are required only for face recognition, not for UI
 
-```bash
-git clone https://github.com/your-username/Smart-Doorbell-Face-Recognition.git
-cd Smart-Doorbell-Face-Recognition
+✅ GitHub blocks pushes with leaked secrets
 
+🧠 Credits
+AWS Rekognition
 
+Twilio
 
+OpenCV
+
+Flask
